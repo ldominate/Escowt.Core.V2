@@ -13,7 +13,7 @@ namespace Escowt.Data
 		// 
 		// Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "EscowtDB" 
 		// в файле конфигурации приложения.
-		public EscowtDB() : base("name=EscowtDB")
+		public EscowtDB(string connection) : base(connection)
 		{
 
 		}

@@ -9,7 +9,7 @@ namespace Escowt.Data.Globalization
 	{
 		public LanguageConfiguration()
 		{
-			ToTable("[Languages]", "[Globalization]");
+			ToTable("Languages", "Globalization");
 			Property(l => l.Alias).HasMaxLength(10);
 			Property(l => l.TitleRu).HasMaxLength(50);
 			Property(l => l.TitleEn).HasMaxLength(50);

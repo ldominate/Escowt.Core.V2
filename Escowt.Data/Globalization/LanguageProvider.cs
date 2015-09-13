@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Escowt.Domain.Globalization;
 
 namespace Escowt.Data.Globalization
@@ -19,10 +16,11 @@ namespace Escowt.Data.Globalization
 		{
 			using (var transaction = _contextDB.Database.BeginTransaction())
 			{
-				if (_contextDB.Languages.Find(language.Guid) == null)
-				{
-					
-				}
+				_contextDB.Languages.Add(language);
+
+				_contextDB.SaveChanges();
+
+				transaction.Commit();
 			}
 			return language;
 		}
