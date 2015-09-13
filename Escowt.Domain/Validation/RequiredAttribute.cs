@@ -11,11 +11,11 @@ namespace Escowt.Domain.Validation
 	{
 		public string ErrorMessageId { get; set; }
 
-		private Type ResourceType = null;
+		private readonly Type _resourceType;
 
 		public RequiredAttribute()
 		{
-			ResourceType = typeof(IResourceCodeString);
+			_resourceType = typeof(IResourceCodeString);
 			ErrorMessageId = "Required";
 		}
 
@@ -23,7 +23,7 @@ namespace Escowt.Domain.Validation
 
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
-			Service = validationContext.GetService(ResourceType) as IResourceCodeString;
+			Service = validationContext.GetService(_resourceType) as IResourceCodeString;
 
 			var array = value as IEnumerable;
 

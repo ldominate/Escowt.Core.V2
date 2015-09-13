@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Escowt.Domain.Common
 {
@@ -10,7 +11,10 @@ namespace Escowt.Domain.Common
 		}
 
 		/// <summary>Идентификатор объекта</summary>
+		[Key]
 		public Guid Guid { get; set; }
+
+		public bool IsDeleted { get; set; }
 
 		public bool Equals(BaseDomainObject other)
 		{
