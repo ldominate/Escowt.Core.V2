@@ -1,0 +1,10 @@
+﻿CREATE TABLE [Globalization].[Languages]
+(
+	[Guid]			UNIQUEIDENTIFIER	NOT NULL,
+	[Alias]			NVARCHAR(10)		NULL,
+	[Title]			NVARCHAR(255)		NULL,
+	[Description]	NVARCHAR(1024)		NULL,
+	[IsDeleted]		BIT					NOT NULL DEFAULT 0,
+
+	CONSTRAINT [PK_Languages] PRIMARY KEY CLUSTERED ([GUID] ASC)
+)
