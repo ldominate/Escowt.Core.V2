@@ -14,8 +14,6 @@ namespace Escowt.Domain.Common
 		[Key]
 		public Guid Guid { get; set; }
 
-		public bool IsDeleted { get; set; }
-
 		public bool Equals(BaseDomainObject other)
 		{
 			return other != null && other.Guid == Guid && GetType() == other.GetType();

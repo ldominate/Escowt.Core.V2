@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Escowt.Data.Globalization;
+using Escowt.Domain.Authorization;
 using Escowt.Domain.Globalization;
 
 namespace Escowt.Data
@@ -22,6 +23,8 @@ namespace Escowt.Data
 		// о настройке и использовании модели Code First см. в статье http://go.microsoft.com/fwlink/?LinkId=390109.
 
 		public virtual DbSet<Language> Languages { get; set; }
+
+		public virtual DbSet<UserGroup> UserGroups { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

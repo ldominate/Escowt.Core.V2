@@ -40,14 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\UserGroup.cs" />
+    <Compile Include="Common\BaseDomainByLogicDeleteObject.cs" />
+    <Compile Include="Common\BaseEntity.cs" />
+    <Compile Include="Common\Caption.cs" />
     <Compile Include="Common\BaseDomainObject.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Globalization\ILanguageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceCodeString\IResourceCodeString.cs" />
     <Compile Include="ResourceCodeString\IResourceCodeStringFactory.cs" />
+    <Compile Include="Validation\BaseValidateAttribute.cs" />
     <Compile Include="Validation\RequiredAttribute.cs" />
     <Compile Include="Validation\StringLengthAttribute.cs" />
+    <Compile Include="Validation\UniqueAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

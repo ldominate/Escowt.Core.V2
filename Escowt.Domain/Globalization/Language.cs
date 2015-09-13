@@ -3,7 +3,7 @@ using Escowt.Domain.Validation;
 
 namespace Escowt.Domain.Globalization
 {
-	public class Language : BaseDomainObject
+	public class Language : BaseDomainByLogicDeleteObject
 	{
 		public Language()
 		{

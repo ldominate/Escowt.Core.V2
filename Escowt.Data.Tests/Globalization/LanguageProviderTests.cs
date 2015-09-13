@@ -22,7 +22,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			_contextDB = new EscowtDB(connectionStrings);
 
-			_contextDB.Database.Initialize(true);
+			_contextDB.Database.Initialize(false);
 
 			_provider = new LanguageProvider(_contextDB);
 		}
