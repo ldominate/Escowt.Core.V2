@@ -4,11 +4,11 @@ using Escowt.Domain.Validation;
 
 namespace Escowt.Domain.Authorization
 {
-	public class UserGroup : BaseEntity<Caption>
+	public class UserGroup : BaseEntity<UserGroupCaption>
 	{
 		public UserGroup()
 		{
-			Titles = new HashSet<Caption>();
+			Titles = new HashSet<UserGroupCaption>();
 		}
 
 		[Required, Unique, StringLength(50)]

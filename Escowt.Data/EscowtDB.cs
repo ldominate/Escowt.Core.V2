@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Escowt.Data.Authorization;
 using Escowt.Data.Globalization;
 using Escowt.Domain.Authorization;
 using Escowt.Domain.Globalization;
@@ -26,9 +27,13 @@ namespace Escowt.Data
 
 		public virtual DbSet<UserGroup> UserGroups { get; set; }
 
+		public virtual DbSet<UserGroupCaption> UserGroupCaptions { get; set; }
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Configurations.Add(new LanguageConfiguration());
+			modelBuilder.Configurations.Add(new UserGroupConfiguration());
+			modelBuilder.Configurations.Add(new UserGroupCaptionConfiguration());
 			
 			base.OnModelCreating(modelBuilder);
 		}

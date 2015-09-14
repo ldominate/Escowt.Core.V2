@@ -56,7 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\UserGroupCaptionConfiguration.cs" />
     <Compile Include="Authorization\UserGroupConfiguration.cs" />
+    <Compile Include="Authorization\UserGroupProvider.cs" />
+    <Compile Include="Common\BaseEntityTypeConfiguration.cs" />
     <Compile Include="Common\BaseRepositoryes.cs" />
     <Compile Include="Common\IBaseRepository.cs" />
     <Compile Include="Common\IEntityConfiguration.cs" />

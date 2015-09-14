@@ -54,6 +54,47 @@ namespace Escowt.Data.Tests.Globalization
 			Assert.AreEqual(langDB.Guid, lang.Guid);
 		}
 
+		[TestMethod]
+		public void SetRuLanguageTest()
+		{
+			var lang = new Language
+			{
+				Alias = "ru",
+				TitleRu = "Русский",
+				TitleEn = "Russian",
+				Description = "Русский"
+			};
+
+			var lguid = lang.Guid;
+
+			_provider.SetLanguage(lang);
+
+			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
+
+			Assert.IsNotNull(langDB);
+			Assert.AreEqual(langDB.Guid, lang.Guid);
+		}
+
+		[TestMethod]
+		public void SetEnLanguageTest()
+		{
+			var lang = new Language
+			{
+				Alias = "en",
+				TitleRu = "Английский",
+				TitleEn = "English",
+				Description = "English (UK)"
+			};
+
+			var lguid = lang.Guid;
+
+			_provider.SetLanguage(lang);
+
+			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
+
+			Assert.IsNotNull(langDB);
+			Assert.AreEqual(langDB.Guid, lang.Guid);
+		}
 
 	}
 }

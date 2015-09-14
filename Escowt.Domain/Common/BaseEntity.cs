@@ -14,17 +14,7 @@ namespace Escowt.Domain.Common
 		/// <returns></returns>
 		public virtual string GetTitle(string alias)
 		{
-			if (Titles == null || !Titles.Any())
-			{
-				return string.Empty;
-			}
-			var result = Titles.FirstOrDefault(i => i.Language.Alias == alias);
-
-			if (result != null)
-			{
-				return result.Title;
-			}
-			return string.Empty;
+			return GetTitleCaption(i => i.Language.Alias == alias);
 		}
 
 		/// <summary>Получить наименование объекта</summary>
@@ -32,18 +22,22 @@ namespace Escowt.Domain.Common
 		/// <returns></returns>
 		public virtual string GetTitle(Guid languageGuid)
 		{
+			return GetTitleCaption(i => i.Language.Guid == languageGuid);
+		}
+
+		string GetTitleCaption(Func<TCaption, bool> matchingFunc)
+		{
 			if (Titles == null || !Titles.Any())
 			{
 				return string.Empty;
 			}
-			var result = Titles.FirstOrDefault(i => i.Language.Guid == languageGuid);
+			var result = Titles.FirstOrDefault(matchingFunc);
 
 			if (result != null)
 			{
 				return result.Title;
 			}
 			return string.Empty;
-
 		}
 
 		/// <summary>Получить наименование объекта по умолчанию</summary>

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\IUserGroupProvider.cs" />
     <Compile Include="Authorization\UserGroup.cs" />
+    <Compile Include="Authorization\UserGroupCaption.cs" />
     <Compile Include="Common\BaseDomainByLogicDeleteObject.cs" />
     <Compile Include="Common\BaseEntity.cs" />
     <Compile Include="Common\Caption.cs" />
