@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Diagnostics;
+using System.Linq;
 using Escowt.Domain.Globalization;
 
 namespace Escowt.Data.Globalization
@@ -12,12 +14,27 @@ namespace Escowt.Data.Globalization
 			_contextDB = contextDB;
 		}
 
-		public Language SetLanguage(Language language)
+		public Language Insert(Language language)
 		{
 			using (var transaction = _contextDB.Database.BeginTransaction())
 			{
-				_contextDB.Languages.Add(language);
+				_contextDB.Database.Log = (s => Debug.WriteLine(s));
 
+				_contextDB.Entry(language).State = EntityState.Added;
+
+				_contextDB.SaveChanges();
+				transaction.Commit();
+			}
+			return language;
+		}
+
+		public Language Update(Language language)
+		{
+			using (var transaction = _contextDB.Database.BeginTransaction())
+			{
+				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+
+				_contextDB.Entry(language).State = EntityState.Modified;
 				_contextDB.SaveChanges();
 
 				transaction.Commit();
@@ -29,5 +46,6 @@ namespace Escowt.Data.Globalization
 		{
 			get { return _contextDB.Languages; }
 		}
+
 	}
 }

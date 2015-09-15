@@ -66,6 +66,15 @@
     <Compile Include="EscowtDB.cs" />
     <Compile Include="Globalization\LanguageConfiguration.cs" />
     <Compile Include="Globalization\LanguageProvider.cs" />
+    <Compile Include="Migrations\201509151156375_InitialCreate.cs" />
+    <Compile Include="Migrations\201509151156375_InitialCreate.Designer.cs">
+      <DependentUpon>201509151156375_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151308523_SampleMigration.cs" />
+    <Compile Include="Migrations\201509151308523_SampleMigration.Designer.cs">
+      <DependentUpon>201509151308523_SampleMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,7 +86,14 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509151156375_InitialCreate.resx">
+      <DependentUpon>201509151156375_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151308523_SampleMigration.resx">
+      <DependentUpon>201509151308523_SampleMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

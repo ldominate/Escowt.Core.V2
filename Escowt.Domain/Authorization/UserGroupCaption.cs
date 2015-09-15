@@ -9,7 +9,7 @@ namespace Escowt.Domain.Authorization
 	{
 		/// <summary>Идентификатор группы пользователей</summary>
 		/// <remarks>Связь</remarks>
-		[Key]
+		[Key, Validation.Required]
 		public Guid UserGroupGuid { get; set; }
 	}
 }

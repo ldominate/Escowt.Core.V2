@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using Escowt.Data.Globalization;
@@ -20,6 +21,8 @@ namespace Escowt.Data.Tests.Globalization
 		{
 			var connectionStrings = ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString();
 
+			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EscowtDB>());
+
 			_contextDB = new EscowtDB(connectionStrings);
 
 			_contextDB.Database.Initialize(false);
@@ -34,7 +37,7 @@ namespace Escowt.Data.Tests.Globalization
 		}
 
 		[TestMethod]
-		public void SetNewLanguageTest()
+		public void SetEsLanguageTest()
 		{
 			var lang = new Language
 			{
@@ -46,12 +49,30 @@ namespace Escowt.Data.Tests.Globalization
 
 			var lguid = lang.Guid;
 
-			_provider.SetLanguage(lang);
+			_provider.Insert(lang);
 
 			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
 
 			Assert.IsNotNull(langDB);
 			Assert.AreEqual(langDB.Guid, lang.Guid);
+		}
+
+		[TestMethod]
+		public void ChangeEsLanguageTest()
+		{
+			var language = _provider.Languages.FirstOrDefault(l => l.Alias == "es-ES");
+
+			Assert.IsNotNull(language);
+
+			language.Description = "Это испания2!!!";
+
+			_provider.Update(language);
+
+			var languageChange = _provider.Languages.FirstOrDefault(l => l.Alias == "es-ES");
+
+			Assert.IsNotNull(languageChange);
+
+			Assert.AreEqual(language.Description, languageChange.Description);
 		}
 
 		[TestMethod]
@@ -67,7 +88,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			var lguid = lang.Guid;
 
-			_provider.SetLanguage(lang);
+			_provider.Insert(lang);
 
 			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
 
@@ -88,7 +109,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			var lguid = lang.Guid;
 
-			_provider.SetLanguage(lang);
+			_provider.Insert(lang);
 
 			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
 

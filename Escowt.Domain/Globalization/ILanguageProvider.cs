@@ -4,7 +4,9 @@ namespace Escowt.Domain.Globalization
 {
 	public interface ILanguageProvider
 	{
-		Language SetLanguage(Language language);
+		Language Insert(Language language);
+
+		Language Update(Language language);
 
 		IQueryable<Language> Languages { get; }
 	}

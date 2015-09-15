@@ -4,7 +4,7 @@ namespace Escowt.Domain.Authorization
 {
 	public interface IUserGroupProvider
 	{
-		UserGroup SetUserGroup(UserGroup userGroup);
+		UserGroup Insert(UserGroup userGroup);
 
 		IQueryable<UserGroup> UserGroups { get; }
 	}

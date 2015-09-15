@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Diagnostics;
+using System.Linq;
 using Escowt.Domain.Authorization;
 
 namespace Escowt.Data.Authorization
@@ -12,11 +14,13 @@ namespace Escowt.Data.Authorization
 			_contextDB = contextDB;
 		}
 
-		public UserGroup SetUserGroup(UserGroup userGroup)
+		public UserGroup Insert(UserGroup userGroup)
 		{
 			using (var transaction = _contextDB.Database.BeginTransaction())
 			{
-				_contextDB.UserGroups.Add(userGroup);
+				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+
+				_contextDB.Entry(userGroup).State = EntityState.Added;
 
 				_contextDB.SaveChanges();
 
