@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using Escowt.Data.Globalization;
 using Escowt.Domain.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -51,7 +48,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			_provider.Insert(lang);
 
-			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
+			var langDB = _provider.CollectionModels.FirstOrDefault(l => l.Guid == lguid);
 
 			Assert.IsNotNull(langDB);
 			Assert.AreEqual(langDB.Guid, lang.Guid);
@@ -60,7 +57,7 @@ namespace Escowt.Data.Tests.Globalization
 		[TestMethod]
 		public void ChangeEsLanguageTest()
 		{
-			var language = _provider.Languages.FirstOrDefault(l => l.Alias == "es-ES");
+			var language = _provider.CollectionModels.FirstOrDefault(l => l.Alias == "es-ES");
 
 			Assert.IsNotNull(language);
 
@@ -68,7 +65,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			_provider.Update(language);
 
-			var languageChange = _provider.Languages.FirstOrDefault(l => l.Alias == "es-ES");
+			var languageChange = _provider.CollectionModels.FirstOrDefault(l => l.Alias == "es-ES");
 
 			Assert.IsNotNull(languageChange);
 
@@ -90,7 +87,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			_provider.Insert(lang);
 
-			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
+			var langDB = _provider.CollectionModels.FirstOrDefault(l => l.Guid == lguid);
 
 			Assert.IsNotNull(langDB);
 			Assert.AreEqual(langDB.Guid, lang.Guid);
@@ -111,7 +108,7 @@ namespace Escowt.Data.Tests.Globalization
 
 			_provider.Insert(lang);
 
-			var langDB = _provider.Languages.FirstOrDefault(l => l.Guid == lguid);
+			var langDB = _provider.CollectionModels.FirstOrDefault(l => l.Guid == lguid);
 
 			Assert.IsNotNull(langDB);
 			Assert.AreEqual(langDB.Guid, lang.Guid);

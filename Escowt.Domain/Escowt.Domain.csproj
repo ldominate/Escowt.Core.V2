@@ -47,6 +47,8 @@
     <Compile Include="Common\BaseEntity.cs" />
     <Compile Include="Common\Caption.cs" />
     <Compile Include="Common\BaseDomainObject.cs" />
+    <Compile Include="Common\Interfaces\IBaseCRUDLogicProvider.cs" />
+    <Compile Include="Common\Interfaces\IBaseCRUDProvider.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Globalization\ILanguageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

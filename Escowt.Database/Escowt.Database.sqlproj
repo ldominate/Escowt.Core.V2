@@ -62,12 +62,15 @@
     <Folder Include="Security\" />
     <Folder Include="Globalization" />
     <Folder Include="Globalization\Tables" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Authorization\Tables\UserSet.sql" />
-    <Build Include="Authorization\Tables\UserGroupSet.sql" />
     <Build Include="Security\Authorization.sql" />
     <Build Include="Security\Globalization.sql" />
     <Build Include="Globalization\Tables\Languages.sql" />
+    <Build Include="dbo\Tables\__MigrationHistory.sql" />
+    <Build Include="Authorization\Tables\UserGroups.sql" />
+    <Build Include="Authorization\Tables\UserGroupCaptions.sql" />
   </ItemGroup>
 </Project>

@@ -1,13 +1,9 @@
-﻿using System.Linq;
+﻿using Escowt.Domain.Common.Interfaces;
 
 namespace Escowt.Domain.Globalization
 {
-	public interface ILanguageProvider
+	public interface ILanguageProvider : IBaseCRUDProvider<Language>
 	{
-		Language Insert(Language language);
 
-		Language Update(Language language);
-
-		IQueryable<Language> Languages { get; }
 	}
 }

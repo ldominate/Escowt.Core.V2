@@ -1,2 +1,4 @@
 ﻿CREATE SCHEMA [Globalization]
-	AUTHORIZATION [dbo];
+    AUTHORIZATION [dbo];
+
+
