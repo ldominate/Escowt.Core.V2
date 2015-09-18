@@ -63,6 +63,7 @@
     <Compile Include="Common\BaseRepositoryes.cs" />
     <Compile Include="Common\IBaseRepository.cs" />
     <Compile Include="Common\IEntityConfiguration.cs" />
+    <Compile Include="Common\Providers\BaseCRUDLogicProvider.cs" />
     <Compile Include="Common\Providers\BaseCRUDProvider.cs" />
     <Compile Include="EscowtDB.cs" />
     <Compile Include="Globalization\LanguageConfiguration.cs" />

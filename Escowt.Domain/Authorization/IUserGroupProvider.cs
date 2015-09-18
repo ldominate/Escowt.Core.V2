@@ -1,11 +1,9 @@
-﻿using System.Linq;
+﻿using Escowt.Domain.Common.Interfaces;
 
 namespace Escowt.Domain.Authorization
 {
-	public interface IUserGroupProvider
+	public interface IUserGroupProvider : IBaseCRUDProvider<UserGroup>
 	{
-		UserGroup Insert(UserGroup userGroup);
 
-		IQueryable<UserGroup> UserGroups { get; }
 	}
 }

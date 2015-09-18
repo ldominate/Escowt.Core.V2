@@ -7,25 +7,27 @@ using Escowt.Domain.Common.Interfaces;
 
 namespace Escowt.Data.Common.Providers
 {
-	public class BaseCRUDProvider<TModel> : IBaseCRUDProvider<TModel>
+	/// <summary>Базовый провайдер основных методов обработки</summary>
+	/// <typeparam name="TModel"></typeparam>
+	public abstract class BaseCRUDProvider<TModel> : IBaseCRUDProvider<TModel>
 		where TModel : BaseDomainObject
 	{
-		private readonly EscowtDB _contextDB;
+		protected readonly EscowtDB ContextDB;
 
 		protected BaseCRUDProvider(EscowtDB contextDB)
 		{
-			_contextDB = contextDB;
+			ContextDB = contextDB;
 		}
 
 		public TModel Insert(TModel model)
 		{
-			using (var transaction = _contextDB.Database.BeginTransaction())
+			using (var transaction = ContextDB.Database.BeginTransaction())
 			{
-				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
-				_contextDB.Entry(model).State = EntityState.Added;
+				ContextDB.Entry(model).State = EntityState.Added;
 
-				_contextDB.SaveChanges();
+				ContextDB.SaveChanges();
 				transaction.Commit();
 			}
 			return model;
@@ -33,12 +35,12 @@ namespace Escowt.Data.Common.Providers
 
 		public TModel Update(TModel model)
 		{
-			using (var transaction = _contextDB.Database.BeginTransaction())
+			using (var transaction = ContextDB.Database.BeginTransaction())
 			{
-				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
-				_contextDB.Entry(model).State = EntityState.Modified;
-				_contextDB.SaveChanges();
+				ContextDB.Entry(model).State = EntityState.Modified;
+				ContextDB.SaveChanges();
 
 				transaction.Commit();
 			}
@@ -49,19 +51,19 @@ namespace Escowt.Data.Common.Providers
 		{
 			bool result;
 
-			using (var transaction = _contextDB.Database.BeginTransaction())
+			using (var transaction = ContextDB.Database.BeginTransaction())
 			{
-				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
-				var model = _contextDB.Set<TModel>().FirstOrDefault(m => m.Guid == modelGuid);
+				var model = ContextDB.Set<TModel>().FirstOrDefault(m => m.Guid == modelGuid);
 
 				if (model == null)
 				{
 					return false;
 				}
-				_contextDB.Entry(model).State = EntityState.Deleted;
+				ContextDB.Entry(model).State = EntityState.Deleted;
 
-				result = _contextDB.SaveChanges() > 0;
+				result = ContextDB.SaveChanges() > 0;
 
 				transaction.Commit();
 			}
@@ -71,11 +73,11 @@ namespace Escowt.Data.Common.Providers
 		public TModel GetById(Guid modelGuid)
 		{
 			TModel model;
-			using (var transaction = _contextDB.Database.BeginTransaction())
+			using (var transaction = ContextDB.Database.BeginTransaction())
 			{
-				_contextDB.Database.Log = (s => Debug.WriteLine(s));
+				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
-				model = _contextDB.Set<TModel>().FirstOrDefault(m => m.Guid == modelGuid);
+				model = ContextDB.Set<TModel>().FirstOrDefault(m => m.Guid == modelGuid);
 
 				transaction.Commit();
 			}
@@ -84,7 +86,7 @@ namespace Escowt.Data.Common.Providers
 
 		public IQueryable<TModel> CollectionModels
 		{
-			get { return _contextDB.Set<TModel>(); }
+			get { return ContextDB.Set<TModel>(); }
 		}
 	}
 }

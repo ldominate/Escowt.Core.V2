@@ -1,36 +1,19 @@
-﻿using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
-using Escowt.Data.Globalization;
+﻿using System.Linq;
+using Escowt.Data.Tests.Common;
 using Escowt.Domain.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Escowt.Data.Tests.Globalization
 {
 	[TestClass]
-	public class LanguageProviderTests
+	public class LanguageProviderTests : BaseTest
 	{
-		private EscowtDB _contextDB;
-		private LanguageProvider _provider;
+		private ILanguageProvider _provider;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			var connectionStrings = ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString();
-
-			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EscowtDB>());
-
-			_contextDB = new EscowtDB(connectionStrings);
-
-			_contextDB.Database.Initialize(false);
-
-			_provider = new LanguageProvider(_contextDB);
-		}
-
-		[TestCleanup]
-		public void TestCleanup()
-		{
-			_contextDB.Dispose();
+			_provider = InstanceProvider<ILanguageProvider>();
 		}
 
 		[TestMethod]
