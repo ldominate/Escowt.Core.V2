@@ -1,4 +1,7 @@
-﻿using Escowt.Data.Common.Providers;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+using Escowt.Data.Common.Providers;
 using Escowt.Domain.Authorization;
 
 namespace Escowt.Data.Authorization
@@ -10,5 +13,11 @@ namespace Escowt.Data.Authorization
 
 		}
 
+		public override UserGroup GetById(Guid modelGuid)
+		{
+			var userGroup = ContextDB.Set<UserGroup>().Where(m => m.Guid == modelGuid).Include(ug => ug.Titles).FirstOrDefault();
+
+			return userGroup;
+		}
 	}
 }

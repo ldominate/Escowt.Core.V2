@@ -91,7 +91,7 @@ namespace Escowt.Data.Common.Providers
 			return result;
 		}
 
-		public TModel GetById(Guid modelGuid)
+		public virtual TModel GetById(Guid modelGuid)
 		{
 			TModel model;
 			using (var transaction = ContextDB.Database.BeginTransaction())

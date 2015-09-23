@@ -1,5 +1,8 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using Autofac;
+using Escowt.Data.Common;
+using Escowt.Data.Common.IoConfiguration;
 using Escowt.Data.Tests.Common.IoConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -23,9 +26,13 @@ namespace Escowt.Data.Tests.Common
 		{
 			var iocBuilder = new ContainerBuilder();
 
-			iocBuilder.Register(c => new EscowtDB(ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString())).SingleInstance();
+			iocBuilder.Register(c => new EscowtDB(
+					ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString(),
+					c.Resolve<IEnumerable<IEntityConfiguration>>()))
+				.SingleInstance();
 
 			iocBuilder.RegisterModule<ProviderModule>();
+			iocBuilder.RegisterModule<ConfigurationModule>();
 
 			ContainerIoC = iocBuilder.Build();
 		}

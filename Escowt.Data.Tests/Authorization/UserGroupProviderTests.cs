@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Escowt.Data.Tests.Common;
 using Escowt.Domain.Authorization;
@@ -55,6 +56,19 @@ namespace Escowt.Data.Tests.Authorization
 
 			Assert.IsNotNull(userGroups);
 			Assert.IsTrue(userGroups.Any());
+		}
+
+		[TestMethod]
+		public void GetuserGroupById()
+		{
+			Guid userGroupId = new Guid("f470b98a-e166-4fa2-80ab-a18283aca608");
+
+			var userGroup = _provider.GetById(userGroupId);
+
+			Assert.IsNotNull(userGroup);
+			Assert.IsFalse(string.IsNullOrEmpty(userGroup.Name));
+			Assert.IsNotNull(userGroup.Titles);
+			Assert.IsTrue(userGroup.Titles.Any());
 		}
 	}
 }
