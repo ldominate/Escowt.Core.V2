@@ -49,8 +49,15 @@
     <Compile Include="Common\BaseDomainObject.cs" />
     <Compile Include="Common\Interfaces\IBaseCRUDLogicProvider.cs" />
     <Compile Include="Common\Interfaces\IBaseCRUDProvider.cs" />
+    <Compile Include="Common\Interfaces\ICrudManager.cs" />
+    <Compile Include="Common\Interfaces\ILogicCrudManager.cs" />
+    <Compile Include="Common\Managers\BaseManager.cs" />
+    <Compile Include="Common\Managers\CrudManager.cs" />
+    <Compile Include="Common\Managers\LogicCrudManager.cs" />
+    <Compile Include="Globalization\ILanguageManager.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Globalization\ILanguageProvider.cs" />
+    <Compile Include="Globalization\LanguageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceCodeString\IResourceCodeString.cs" />
     <Compile Include="ResourceCodeString\IResourceCodeStringFactory.cs" />
@@ -58,6 +65,9 @@
     <Compile Include="Validation\RequiredAttribute.cs" />
     <Compile Include="Validation\StringLengthAttribute.cs" />
     <Compile Include="Validation\UniqueAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\Requests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

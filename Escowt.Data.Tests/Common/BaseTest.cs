@@ -25,7 +25,7 @@ namespace Escowt.Data.Tests.Common
 
 			iocBuilder.Register(c => new EscowtDB(ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString())).SingleInstance();
 
-			iocBuilder.RegisterModule(new ProviderModule());
+			iocBuilder.RegisterModule<ProviderModule>();
 
 			ContainerIoC = iocBuilder.Build();
 		}

@@ -2,8 +2,8 @@
 
 namespace Escowt.Domain.Globalization
 {
-	public interface ILanguageProvider : IBaseCRUDLogicProvider<Language>
+	public interface ILanguageManager : ILogicCrudManager<Language>
 	{
-
+		
 	}
 }

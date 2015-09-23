@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Escowt.Domain.Common.Interfaces
 {
-	/// <summary>Общий интерфейс доступа к данным</summary>
-	/// <typeparam name="TModel"></typeparam>
-	public interface IBaseCRUDProvider<TModel> where TModel : BaseDomainObject
+	public interface ICrudManager<TModel> where TModel : BaseDomainObject
 	{
 		TModel Insert(TModel model);
 
 		TModel Update(TModel model);
-
-		TModel Update(TModel model, IEnumerable<string> propertyNotChanges);
 
 		bool Delete(Guid modelGuid);
 
@@ -22,5 +17,6 @@ namespace Escowt.Domain.Common.Interfaces
 		TModel GetById(Guid modelGuid);
 
 		IQueryable<TModel> CollectionModels { get; }
+
 	}
 }

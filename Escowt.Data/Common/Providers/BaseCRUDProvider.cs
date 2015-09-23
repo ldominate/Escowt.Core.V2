@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
@@ -33,13 +34,33 @@ namespace Escowt.Data.Common.Providers
 			return model;
 		}
 
-		public TModel Update(TModel model)
+		public virtual TModel Update(TModel model)
 		{
 			using (var transaction = ContextDB.Database.BeginTransaction())
 			{
 				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
 				ContextDB.Entry(model).State = EntityState.Modified;
+				ContextDB.SaveChanges();
+
+				transaction.Commit();
+			}
+			return model;
+		}
+
+		public virtual TModel Update(TModel model, IEnumerable<string> propertyNotChanges)
+		{
+			using (var transaction = ContextDB.Database.BeginTransaction())
+			{
+				ContextDB.Database.Log = (s => Debug.WriteLine(s));
+
+				ContextDB.Entry(model).State = EntityState.Modified;
+
+				foreach (var propertyNotChange in propertyNotChanges)
+				{
+					ContextDB.Entry(model).Property(propertyNotChange).IsModified = false;
+				}
+
 				ContextDB.SaveChanges();
 
 				transaction.Commit();
