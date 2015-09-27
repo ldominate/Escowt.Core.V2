@@ -33,7 +33,7 @@ namespace Escowt.Data.Common.Providers
 			{
 				ContextDB.Database.Log = (s => Debug.WriteLine(s));
 
-				var model = ContextDB.Set<TModel>().FirstOrDefault(m => m.Guid == modelGuid);
+				var model = ContextDB.Set<TModel>().AsNoTracking().FirstOrDefault(m => m.Guid == modelGuid);
 
 				if (model == null)
 				{
@@ -41,7 +41,9 @@ namespace Escowt.Data.Common.Providers
 				}
 				model.IsDeleted = logicDelete;
 
-				ContextDB.Entry(model).State = EntityState.Modified;
+				ContextDB.Entry(model).Property(m => m.IsDeleted).IsModified = true;
+
+				ContextDB.ChangeTracker.DetectChanges();
 
 				result = ContextDB.SaveChanges() > 0;
 

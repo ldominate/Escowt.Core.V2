@@ -15,9 +15,14 @@ namespace Escowt.Data.Globalization
 
 		}
 
+		public override Language Insert(Language model)
+		{
+			return Insert(model, l => l.IsDeleted);
+		}
+
 		public override Language Update(Language model)
 		{
-			return base.Update(model, new List<string> {"Alias"});
+			return Update(model, l => l.Alias, language => language.IsDeleted);
 		}
 	}
 }

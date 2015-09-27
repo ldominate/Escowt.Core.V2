@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Escowt.Domain.Common.Interfaces
 {
@@ -11,8 +11,6 @@ namespace Escowt.Domain.Common.Interfaces
 		TModel Insert(TModel model);
 
 		TModel Update(TModel model);
-
-		TModel Update(TModel model, IEnumerable<string> propertyNotChanges);
 
 		bool Delete(Guid modelGuid);
 

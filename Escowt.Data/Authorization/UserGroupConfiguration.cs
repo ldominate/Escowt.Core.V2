@@ -10,7 +10,7 @@ namespace Escowt.Data.Authorization
 		public UserGroupConfiguration()
 		{
 			ToTable("UserGroups", "Authorization");
-			Property(ug => ug.Name).HasMaxLength(50).HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute("IX_LanguageAliasUnique", 1) { IsUnique = true }));
+			Property(ug => ug.Name).HasMaxLength(50).HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute("IX_UserGroupsNameUnique", 1) { IsUnique = true }));
 			HasMany(ug => ug.Titles).WithOptional().HasForeignKey(ugc => ugc.UserGroupGuid).WillCascadeOnDelete(true);
 		}
 	}

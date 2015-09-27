@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201509151308523_SampleMigration.Designer.cs">
       <DependentUpon>201509151308523_SampleMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509270840506_ChangeUniqueIndex.cs" />
+    <Compile Include="Migrations\201509270840506_ChangeUniqueIndex.Designer.cs">
+      <DependentUpon>201509270840506_ChangeUniqueIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509151308523_SampleMigration.resx">
       <DependentUpon>201509151308523_SampleMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509270840506_ChangeUniqueIndex.resx">
+      <DependentUpon>201509270840506_ChangeUniqueIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

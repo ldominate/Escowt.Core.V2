@@ -26,13 +26,11 @@ namespace Escowt.Data.Tests.Common
 		{
 			var iocBuilder = new ContainerBuilder();
 
-			iocBuilder.Register(c => new EscowtDB(
-					ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString(),
-					c.Resolve<IEnumerable<IEntityConfiguration>>()))
+			iocBuilder.Register(c => new EscowtDB(ConfigurationManager.ConnectionStrings["ConnectionDB"].ToString()))
 				.SingleInstance();
 
 			iocBuilder.RegisterModule<ProviderModule>();
-			iocBuilder.RegisterModule<ConfigurationModule>();
+			//iocBuilder.RegisterModule<ConfigurationModule>();
 
 			ContainerIoC = iocBuilder.Build();
 		}

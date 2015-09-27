@@ -13,11 +13,22 @@ namespace Escowt.Data.Authorization
 
 		}
 
+		public override UserGroup Insert(UserGroup model)
+		{
+			return Insert(model, null);
+		}
+
+		public override UserGroup Update(UserGroup model)
+		{
+			return Update(model, null);
+		}
+
 		public override UserGroup GetById(Guid modelGuid)
 		{
 			var userGroup = ContextDB.Set<UserGroup>().Where(m => m.Guid == modelGuid).Include(ug => ug.Titles).FirstOrDefault();
 
 			return userGroup;
 		}
+
 	}
 }

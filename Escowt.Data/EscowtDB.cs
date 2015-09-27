@@ -24,9 +24,9 @@ namespace Escowt.Data
 			
 		}
 		
-		public EscowtDB(string connection, IEnumerable<IEntityConfiguration> configurations) : base(connection)
+		public EscowtDB(string connection) : base(connection)
 		{
-			_configurations = configurations;
+			Configuration.AutoDetectChangesEnabled = false;
 		}
 
 		// Добавьте DbSet для каждого типа сущности, который требуется включить в модель. Дополнительные сведения 
@@ -40,10 +40,12 @@ namespace Escowt.Data
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			foreach (var configuration in _configurations)
-			{
-				configuration.AddConfiguration(modelBuilder.Configurations);
-			}
+			//foreach (var configuration in _configurations)
+			//{
+			//	configuration.AddConfiguration(modelBuilder.Configurations);
+			//}
+
+			modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
 
 			//modelBuilder.Configurations.Add(new LanguageConfiguration());
 			//modelBuilder.Configurations.Add(new UserGroupConfiguration());
